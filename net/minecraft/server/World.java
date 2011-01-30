@@ -1261,10 +1261,10 @@ public class World implements IBlockAccess {
         } else {
             ++this.J;
 
-            try {
-                int i = 1000;
+            boolean flag;
 
-                boolean flag;
+            try {
+                int i = 100;
 
                 while (this.A.size() > 0) {
                     --i;
@@ -1277,10 +1277,11 @@ public class World implements IBlockAccess {
                 }
 
                 flag = false;
-                return flag;
             } finally {
                 --this.J;
             }
+
+            return flag;
         }
     }
 
@@ -1321,9 +1322,7 @@ public class World implements IBlockAccess {
 
                     this.A.add(new MetadataChunkBlock(enumskyblock, i, j, k, l, i1, j1));
                     if (this.A.size() > 100000) {
-                        while (this.A.size() > '\uc350') {
-                            this.d();
-                        }
+                        this.A.clear();
                     }
 
                     --y;
