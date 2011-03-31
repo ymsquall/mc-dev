@@ -9,7 +9,7 @@ public class EntitySheep extends EntityAnimal {
     public EntitySheep(World world) {
         super(world);
         this.texture = "/mob/sheep.png";
-        this.a(0.9F, 1.3F);
+        this.b(0.9F, 1.3F);
     }
 
     protected void a() {
@@ -23,7 +23,7 @@ public class EntitySheep extends EntityAnimal {
             int j = 1 + this.random.nextInt(3);
 
             for (int k = 0; k < j; ++k) {
-                EntityItem entityitem = this.a(new ItemStack(Block.WOOL.id, 1, this.n()), 1.0F);
+                EntityItem entityitem = this.a(new ItemStack(Block.WOOL.id, 1, this.o()), 1.0F);
 
                 entityitem.motY += (double) (this.random.nextFloat() * 0.05F);
                 entityitem.motX += (double) ((this.random.nextFloat() - this.random.nextFloat()) * 0.1F);
@@ -37,7 +37,7 @@ public class EntitySheep extends EntityAnimal {
     public void a(NBTTagCompound nbttagcompound) {
         super.a(nbttagcompound);
         nbttagcompound.a("Sheared", this.j_());
-        nbttagcompound.a("Color", (byte) this.n());
+        nbttagcompound.a("Color", (byte) this.o());
     }
 
     public void b(NBTTagCompound nbttagcompound) {
@@ -58,7 +58,7 @@ public class EntitySheep extends EntityAnimal {
         return "mob.sheep";
     }
 
-    public int n() {
+    public int o() {
         return this.datawatcher.a(16) & 15;
     }
 
@@ -85,6 +85,6 @@ public class EntitySheep extends EntityAnimal {
     public static int a(Random random) {
         int i = random.nextInt(100);
 
-        return i < 5 ? 15 : (i < 10 ? 7 : (i < 15 ? 8 : 0));
+        return i < 5 ? 15 : (i < 10 ? 7 : (i < 15 ? 8 : (i < 18 ? 12 : (random.nextInt(500) == 0 ? 6 : 0))));
     }
 }

@@ -41,23 +41,23 @@ public class ItemBlock extends Item {
 
         if (itemstack.count == 0) {
             return false;
-        } else {
-            if (world.a(this.a, i, j, k, false)) {
-                Block block = Block.byId[this.a];
+        } else if (world.a(this.a, i, j, k, false)) {
+            Block block = Block.byId[this.a];
 
-                if (world.b(i, j, k, this.a, this.a(itemstack.h()))) {
-                    Block.byId[this.a].d(world, i, j, k, l);
-                    Block.byId[this.a].a(world, i, j, k, (EntityLiving) entityhuman);
-                    world.a((double) ((float) i + 0.5F), (double) ((float) j + 0.5F), (double) ((float) k + 0.5F), block.stepSound.c(), (block.stepSound.a() + 1.0F) / 2.0F, block.stepSound.b() * 0.8F);
-                    --itemstack.count;
-                }
+            if (world.b(i, j, k, this.a, this.a(itemstack.h()))) {
+                Block.byId[this.a].d(world, i, j, k, l);
+                Block.byId[this.a].a(world, i, j, k, (EntityLiving) entityhuman);
+                world.a((double) ((float) i + 0.5F), (double) ((float) j + 0.5F), (double) ((float) k + 0.5F), block.stepSound.c(), (block.stepSound.a() + 1.0F) / 2.0F, block.stepSound.b() * 0.8F);
+                --itemstack.count;
             }
 
             return true;
+        } else {
+            return false;
         }
     }
 
     public String a() {
-        return Block.byId[this.a].e();
+        return Block.byId[this.a].f();
     }
 }

@@ -14,6 +14,10 @@ public class ShapelessRecipes implements CraftingRecipe {
         this.b = list;
     }
 
+    public ItemStack b() {
+        return this.a;
+    }
+
     public boolean a(InventoryCrafting inventorycrafting) {
         ArrayList arraylist = new ArrayList(this.b);
 

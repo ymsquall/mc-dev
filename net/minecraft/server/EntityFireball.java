@@ -19,7 +19,7 @@ public class EntityFireball extends Entity {
 
     public EntityFireball(World world) {
         super(world);
-        this.a(1.0F, 1.0F);
+        this.b(1.0F, 1.0F);
     }
 
     protected void a() {}
@@ -27,7 +27,7 @@ public class EntityFireball extends Entity {
     public EntityFireball(World world, EntityLiving entityliving, double d0, double d1, double d2) {
         super(world);
         this.j = entityliving;
-        this.a(1.0F, 1.0F);
+        this.b(1.0F, 1.0F);
         this.c(entityliving.locX, entityliving.locY, entityliving.locZ, entityliving.yaw, entityliving.pitch);
         this.a(this.locX, this.locY, this.locZ);
         this.height = 0.0F;
@@ -55,7 +55,7 @@ public class EntityFireball extends Entity {
             if (i == this.h) {
                 ++this.k;
                 if (this.k == 1200) {
-                    this.C();
+                    this.D();
                 }
 
                 return;
@@ -114,7 +114,7 @@ public class EntityFireball extends Entity {
             }
 
             this.world.a((Entity) null, this.locX, this.locY, this.locZ, 1.0F, true);
-            this.C();
+            this.D();
         }
 
         this.locX += this.motX;
@@ -187,9 +187,9 @@ public class EntityFireball extends Entity {
     }
 
     public boolean a(Entity entity, int i) {
-        this.R();
+        this.W();
         if (entity != null) {
-            Vec3D vec3d = entity.N();
+            Vec3D vec3d = entity.S();
 
             if (vec3d != null) {
                 this.motX = vec3d.a;

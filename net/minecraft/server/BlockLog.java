@@ -17,6 +17,11 @@ public class BlockLog extends Block {
         return Block.LOG.id;
     }
 
+    public void a(World world, EntityHuman entityhuman, int i, int j, int k, int l) {
+        super.a(world, entityhuman, i, j, k, l);
+        entityhuman.a((Statistic) AchievementList.c, 1);
+    }
+
     public void b(World world, int i, int j, int k) {
         byte b0 = 4;
         int l = b0 + 1;

@@ -26,7 +26,7 @@ public class EntityCreeper extends EntityMonster {
     public void f_() {
         this.b = this.a;
         if (this.world.isStatic) {
-            int i = this.r();
+            int i = this.v();
 
             if (i > 0 && this.a == 0) {
                 this.world.a(this, "random.fuse", 1.0F, 0.5F);
@@ -61,7 +61,7 @@ public class EntityCreeper extends EntityMonster {
     }
 
     protected void a(Entity entity, float f) {
-        int i = this.r();
+        int i = this.v();
 
         if ((i > 0 || f >= 3.0F) && (i <= 0 || f >= 7.0F)) {
             this.e(-1);
@@ -78,7 +78,7 @@ public class EntityCreeper extends EntityMonster {
             ++this.a;
             if (this.a >= 30) {
                 this.world.a(this, this.locX, this.locY, this.locZ, 3.0F);
-                this.C();
+                this.D();
             }
 
             this.e = true;
@@ -89,7 +89,7 @@ public class EntityCreeper extends EntityMonster {
         return Item.SULPHUR.id;
     }
 
-    private int r() {
+    private int v() {
         return this.datawatcher.a(16);
     }
 

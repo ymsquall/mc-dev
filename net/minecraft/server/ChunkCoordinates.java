@@ -14,6 +14,12 @@ public class ChunkCoordinates implements Comparable {
         this.c = k;
     }
 
+    public ChunkCoordinates(ChunkCoordinates chunkcoordinates) {
+        this.a = chunkcoordinates.a;
+        this.b = chunkcoordinates.b;
+        this.c = chunkcoordinates.c;
+    }
+
     public boolean equals(Object object) {
         if (!(object instanceof ChunkCoordinates)) {
             return false;

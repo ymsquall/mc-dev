@@ -3,6 +3,7 @@ package net.minecraft.server;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.URL;
+import java.net.URLEncoder;
 
 class ThreadLoginVerifier extends Thread {
 
@@ -18,7 +19,7 @@ class ThreadLoginVerifier extends Thread {
     public void run() {
         try {
             String s = NetLoginHandler.a(this.b);
-            URL url = new URL("http://www.minecraft.net/game/checkserver.jsp?user=" + this.a.b + "&serverId=" + s);
+            URL url = new URL("http://www.minecraft.net/game/checkserver.jsp?user=" + URLEncoder.encode(this.a.b, "UTF-8") + "&serverId=" + URLEncoder.encode(s, "UTF-8"));
             BufferedReader bufferedreader = new BufferedReader(new InputStreamReader(url.openStream()));
             String s1 = bufferedreader.readLine();
 

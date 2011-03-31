@@ -4,7 +4,6 @@ public class ItemSign extends Item {
 
     public ItemSign(int i) {
         super(i);
-        this.durability = 64;
         this.maxStackSize = 1;
     }
 

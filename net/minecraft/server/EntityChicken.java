@@ -13,13 +13,13 @@ public class EntityChicken extends EntityAnimal {
     public EntityChicken(World world) {
         super(world);
         this.texture = "/mob/chicken.png";
-        this.a(0.3F, 0.4F);
+        this.b(0.3F, 0.4F);
         this.health = 4;
         this.i = this.random.nextInt(6000) + 6000;
     }
 
-    public void q() {
-        super.q();
+    public void r() {
+        super.r();
         this.g = this.b;
         this.f = this.c;
         this.c = (float) ((double) this.c + (double) (this.onGround ? -1 : 4) * 0.3D);

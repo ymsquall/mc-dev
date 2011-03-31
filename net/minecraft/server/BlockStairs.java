@@ -120,8 +120,8 @@ public class BlockStairs extends Block {
         this.a.a(world, i, j, k, l, f);
     }
 
-    public void b_(World world, int i, int j, int k, int l) {
-        this.a.b_(world, i, j, k, l);
+    public void a_(World world, int i, int j, int k, int l) {
+        this.a.a_(world, i, j, k, l);
     }
 
     public void b(World world, int i, int j, int k, Entity entity) {

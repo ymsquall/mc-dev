@@ -5,16 +5,20 @@ public class InventoryPlayer implements IInventory {
     public ItemStack[] a = new ItemStack[36];
     public ItemStack[] b = new ItemStack[4];
     public int c = 0;
-    private EntityHuman e;
+    public EntityHuman d;
     private ItemStack f;
-    public boolean d = false;
+    public boolean e = false;
 
     public InventoryPlayer(EntityHuman entityhuman) {
-        this.e = entityhuman;
+        this.d = entityhuman;
     }
 
     public ItemStack b() {
-        return this.a[this.c];
+        return this.c < 9 && this.c >= 0 ? this.a[this.c] : null;
+    }
+
+    public static int e() {
+        return 9;
     }
 
     private int d(int i) {
@@ -29,7 +33,7 @@ public class InventoryPlayer implements IInventory {
 
     private int c(ItemStack itemstack) {
         for (int i = 0; i < this.a.length; ++i) {
-            if (this.a[i] != null && this.a[i].id == itemstack.id && this.a[i].c() && this.a[i].count < this.a[i].b() && this.a[i].count < this.n_() && (!this.a[i].e() || this.a[i].h() == itemstack.h())) {
+            if (this.a[i] != null && this.a[i].id == itemstack.id && this.a[i].c() && this.a[i].count < this.a[i].b() && this.a[i].count < this.r_() && (!this.a[i].e() || this.a[i].h() == itemstack.h())) {
                 return i;
             }
         }
@@ -37,7 +41,7 @@ public class InventoryPlayer implements IInventory {
         return -1;
     }
 
-    private int j() {
+    private int k() {
         for (int i = 0; i < this.a.length; ++i) {
             if (this.a[i] == null) {
                 return i;
@@ -53,7 +57,7 @@ public class InventoryPlayer implements IInventory {
         int k = this.c(itemstack);
 
         if (k < 0) {
-            k = this.j();
+            k = this.k();
         }
 
         if (k < 0) {
@@ -69,8 +73,8 @@ public class InventoryPlayer implements IInventory {
                 l = this.a[k].b() - this.a[k].count;
             }
 
-            if (l > this.n_() - this.a[k].count) {
-                l = this.n_() - this.a[k].count;
+            if (l > this.r_() - this.a[k].count) {
+                l = this.r_() - this.a[k].count;
             }
 
             if (l == 0) {
@@ -84,7 +88,7 @@ public class InventoryPlayer implements IInventory {
         }
     }
 
-    public void e() {
+    public void f() {
         for (int i = 0; i < this.a.length; ++i) {
             if (this.a[i] != null && this.a[i].b > 0) {
                 --this.a[i].b;
@@ -114,7 +118,7 @@ public class InventoryPlayer implements IInventory {
             }
         }
 
-        int i = this.j();
+        int i = this.k();
 
         if (i >= 0) {
             this.a[i] = itemstack;
@@ -220,7 +224,7 @@ public class InventoryPlayer implements IInventory {
         }
     }
 
-    public int m_() {
+    public int q_() {
         return this.a.length + 4;
     }
 
@@ -239,7 +243,7 @@ public class InventoryPlayer implements IInventory {
         return "Inventory";
     }
 
-    public int n_() {
+    public int r_() {
         return 64;
     }
 
@@ -259,7 +263,7 @@ public class InventoryPlayer implements IInventory {
         }
     }
 
-    public int f() {
+    public int g() {
         int i = 0;
         int j = 0;
         int k = 0;
@@ -288,47 +292,47 @@ public class InventoryPlayer implements IInventory {
     public void c(int i) {
         for (int j = 0; j < this.b.length; ++j) {
             if (this.b[j] != null && this.b[j].a() instanceof ItemArmor) {
-                this.b[j].b(i);
+                this.b[j].a(i, this.d);
                 if (this.b[j].count == 0) {
-                    this.b[j].a(this.e);
+                    this.b[j].a(this.d);
                     this.b[j] = null;
                 }
             }
         }
     }
 
-    public void g() {
+    public void h() {
         int i;
 
         for (i = 0; i < this.a.length; ++i) {
             if (this.a[i] != null) {
-                this.e.a(this.a[i], true);
+                this.d.a(this.a[i], true);
                 this.a[i] = null;
             }
         }
 
         for (i = 0; i < this.b.length; ++i) {
             if (this.b[i] != null) {
-                this.e.a(this.b[i], true);
+                this.d.a(this.b[i], true);
                 this.b[i] = null;
             }
         }
     }
 
-    public void h() {
-        this.d = true;
+    public void i() {
+        this.e = true;
     }
 
     public void b(ItemStack itemstack) {
         this.f = itemstack;
-        this.e.a(itemstack);
+        this.d.a(itemstack);
     }
 
-    public ItemStack i() {
+    public ItemStack j() {
         return this.f;
     }
 
     public boolean a_(EntityHuman entityhuman) {
-        return this.e.dead ? false : entityhuman.g(this.e) <= 64.0D;
+        return this.d.dead ? false : entityhuman.g(this.d) <= 64.0D;
     }
 }

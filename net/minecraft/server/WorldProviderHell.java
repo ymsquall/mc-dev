@@ -23,7 +23,7 @@ public class WorldProviderHell extends WorldProvider {
     }
 
     public IChunkProvider c() {
-        return new ChunkProviderHell(this.a, this.a.j());
+        return new ChunkProviderHell(this.a, this.a.k());
     }
 
     public boolean a(int i, int j) {

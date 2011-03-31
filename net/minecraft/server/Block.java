@@ -115,6 +115,7 @@ public class Block {
     public static final Block CAKE_BLOCK = (new BlockCake(92, 121)).c(0.5F).a(k).a("cake");
     public static final Block DIODE_OFF = (new BlockDiode(93, false)).c(0.0F).a(e).a("diode");
     public static final Block DIODE_ON = (new BlockDiode(94, true)).c(0.0F).a(0.625F).a(e).a("diode");
+    public static final Block LOCKED_CHEST = (new BlockLockedChest(95)).c(-1.0F).a(1.0F).a(e).a("lockedchest");
     public int textureId;
     public final int id;
     protected float strength;
@@ -126,14 +127,14 @@ public class Block {
     public double maxY;
     public double maxZ;
     public StepSound stepSound;
-    public float bu;
+    public float bv;
     public final Material material;
     public float frictionFactor;
     private String name;
 
     protected Block(int i, Material material) {
         this.stepSound = d;
-        this.bu = 1.0F;
+        this.bv = 1.0F;
         this.frictionFactor = 0.6F;
         if (byId[i] != null) {
             throw new IllegalArgumentException("Slot " + i + " is already occupied by " + byId[i] + " when adding " + this);
@@ -258,7 +259,7 @@ public class Block {
         return this.strength < 0.0F ? 0.0F : (!entityhuman.b(this) ? 1.0F / this.strength / 100.0F : entityhuman.a(this) / this.strength / 30.0F);
     }
 
-    public void b_(World world, int i, int j, int k, int l) {
+    public void a_(World world, int i, int j, int k, int l) {
         this.a(world, i, j, k, l, 1.0F);
     }
 
@@ -435,8 +436,9 @@ public class Block {
         return false;
     }
 
-    public void a_(World world, int i, int j, int k, int l) {
-        this.b_(world, i, j, k, l);
+    public void a(World world, EntityHuman entityhuman, int i, int j, int k, int l) {
+        entityhuman.a(StatisticList.y[this.id], 1);
+        this.a_(world, i, j, k, l);
     }
 
     public boolean f(World world, int i, int j, int k) {
@@ -451,6 +453,10 @@ public class Block {
     }
 
     public String e() {
+        return StatisticCollector.a(this.f() + ".name");
+    }
+
+    public String f() {
         return this.name;
     }
 
@@ -468,5 +474,6 @@ public class Block {
         }
 
         r[0] = true;
+        StatisticList.a();
     }
 }

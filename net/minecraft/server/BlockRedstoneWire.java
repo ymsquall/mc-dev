@@ -79,15 +79,15 @@ public class BlockRedstoneWire extends Block {
                 }
 
                 if (j2 != l || j != i1 || k2 != j1) {
-                    l1 = this.g(world, j2, j, k2, l1);
+                    l1 = this.f(world, j2, j, k2, l1);
                 }
 
                 if (world.d(j2, j, k2) && !world.d(i, j + 1, k)) {
                     if (j2 != l || j + 1 != i1 || k2 != j1) {
-                        l1 = this.g(world, j2, j + 1, k2, l1);
+                        l1 = this.f(world, j2, j + 1, k2, l1);
                     }
                 } else if (!world.d(j2, j, k2) && (j2 != l || j - 1 != i1 || k2 != j1)) {
-                    l1 = this.g(world, j2, j - 1, k2, l1);
+                    l1 = this.f(world, j2, j - 1, k2, l1);
                 }
             }
 
@@ -130,7 +130,7 @@ public class BlockRedstoneWire extends Block {
                 }
 
                 boolean flag1 = false;
-                int i3 = this.g(world, j2, j, k2, -1);
+                int i3 = this.f(world, j2, j, k2, -1);
 
                 l1 = world.getData(i, j, k);
                 if (l1 > 0) {
@@ -141,7 +141,7 @@ public class BlockRedstoneWire extends Block {
                     this.a(world, j2, j, k2, i, j, k);
                 }
 
-                i3 = this.g(world, j2, l2, k2, -1);
+                i3 = this.f(world, j2, l2, k2, -1);
                 l1 = world.getData(i, j, k);
                 if (l1 > 0) {
                     --l1;
@@ -248,7 +248,7 @@ public class BlockRedstoneWire extends Block {
         }
     }
 
-    private int g(World world, int i, int j, int k, int l) {
+    private int f(World world, int i, int j, int k, int l) {
         if (world.getTypeId(i, j, k) != this.id) {
             return l;
         } else {
@@ -264,7 +264,7 @@ public class BlockRedstoneWire extends Block {
             boolean flag = this.a(world, i, j, k);
 
             if (!flag) {
-                this.b_(world, i, j, k, i1);
+                this.a_(world, i, j, k, i1);
                 world.e(i, j, k, 0);
             } else {
                 this.g(world, i, j, k);

@@ -36,6 +36,7 @@ public class ChunkRegionLoader implements IChunkLoader {
                     chunk = ChunkLoader.a(world, nbttagcompound.k("Level"));
                 }
 
+                chunk.h();
                 return chunk;
             }
         } else {
@@ -44,7 +45,7 @@ public class ChunkRegionLoader implements IChunkLoader {
     }
 
     public void a(World world, Chunk chunk) {
-        world.i();
+        world.j();
 
         try {
             DataOutputStream dataoutputstream = RegionFileCache.d(this.a, chunk.j, chunk.k);
@@ -55,7 +56,7 @@ public class ChunkRegionLoader implements IChunkLoader {
             ChunkLoader.a(chunk, world, nbttagcompound1);
             CompressedStreamTools.a(nbttagcompound, (DataOutput) dataoutputstream);
             dataoutputstream.close();
-            WorldData worlddata = world.n();
+            WorldData worlddata = world.p();
 
             worlddata.b(worlddata.g() + (long) RegionFileCache.b(this.a, chunk.j, chunk.k));
         } catch (Exception exception) {

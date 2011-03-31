@@ -57,8 +57,8 @@ public class NetLoginHandler extends NetHandler {
 
     public void a(Packet1Login packet1login) {
         this.g = packet1login.b;
-        if (packet1login.a != 9) {
-            if (packet1login.a > 9) {
+        if (packet1login.a != 10) {
+            if (packet1login.a > 10) {
                 this.a("Outdated server!");
             } else {
                 this.a("Outdated client!");
@@ -77,17 +77,17 @@ public class NetLoginHandler extends NetHandler {
 
         if (entityplayer != null) {
             a.info(this.b() + " logged in with entity id " + entityplayer.id);
-            ChunkCoordinates chunkcoordinates = this.e.e.l();
+            ChunkCoordinates chunkcoordinates = this.e.e.m();
             NetServerHandler netserverhandler = new NetServerHandler(this.e, this.b, entityplayer);
 
-            netserverhandler.b((Packet) (new Packet1Login("", "", entityplayer.id, this.e.e.j(), (byte) this.e.e.m.g)));
+            netserverhandler.b((Packet) (new Packet1Login("", "", entityplayer.id, this.e.e.k(), (byte) this.e.e.m.g)));
             netserverhandler.b((Packet) (new Packet6SpawnPosition(chunkcoordinates.a, chunkcoordinates.b, chunkcoordinates.c)));
             this.e.f.a((Packet) (new Packet3Chat("\u00A7e" + entityplayer.name + " joined the game.")));
             this.e.f.a(entityplayer);
             netserverhandler.a(entityplayer.locX, entityplayer.locY, entityplayer.locZ, entityplayer.yaw, entityplayer.pitch);
             this.e.c.a(netserverhandler);
-            netserverhandler.b((Packet) (new Packet4UpdateTime(this.e.e.k())));
-            entityplayer.l();
+            netserverhandler.b((Packet) (new Packet4UpdateTime(this.e.e.l())));
+            entityplayer.m();
         }
 
         this.c = true;

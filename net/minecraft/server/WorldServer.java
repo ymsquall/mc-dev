@@ -2,7 +2,6 @@ package net.minecraft.server;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 public class WorldServer extends World {
 
@@ -12,14 +11,14 @@ public class WorldServer extends World {
     private MinecraftServer x;
     private EntityList y = new EntityList();
 
-    public WorldServer(MinecraftServer minecraftserver, IDataManager idatamanager, String s, int i) {
-        super(idatamanager, s, (new Random()).nextLong(), WorldProvider.a(i));
+    public WorldServer(MinecraftServer minecraftserver, IDataManager idatamanager, String s, int i, long j) {
+        super(idatamanager, s, j, WorldProvider.a(i));
         this.x = minecraftserver;
     }
 
     public void a(Entity entity, boolean flag) {
         if (!this.x.m && (entity instanceof EntityAnimal || entity instanceof EntityWaterAnimal)) {
-            entity.C();
+            entity.D();
         }
 
         if (entity.passenger == null || !(entity.passenger instanceof EntityHuman)) {
@@ -95,7 +94,7 @@ public class WorldServer extends World {
         this.x.f.a((double) i, (double) j, (double) k, 64.0D, new Packet54PlayNoteBlock(i, j, k, l, i1));
     }
 
-    public void r() {
+    public void t() {
         this.p.e();
     }
 }

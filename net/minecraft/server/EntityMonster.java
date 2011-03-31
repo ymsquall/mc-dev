@@ -9,24 +9,24 @@ public class EntityMonster extends EntityCreature implements IMonster {
         this.health = 20;
     }
 
-    public void q() {
+    public void r() {
         float f = this.c(1.0F);
 
         if (f > 0.5F) {
             this.at += 2;
         }
 
-        super.q();
+        super.r();
     }
 
     public void f_() {
         super.f_();
         if (this.world.j == 0) {
-            this.C();
+            this.D();
         }
     }
 
-    protected Entity l() {
+    protected Entity m() {
         EntityHuman entityhuman = this.world.a(this, 16.0D);
 
         return entityhuman != null && this.e(entityhuman) ? entityhuman : null;
@@ -49,7 +49,7 @@ public class EntityMonster extends EntityCreature implements IMonster {
     }
 
     protected void a(Entity entity, float f) {
-        if ((double) f < 1.5D && entity.boundingBox.e > this.boundingBox.b && entity.boundingBox.b < this.boundingBox.e) {
+        if (this.attackTicks <= 0 && f < 2.0F && entity.boundingBox.e > this.boundingBox.b && entity.boundingBox.b < this.boundingBox.e) {
             this.attackTicks = 20;
             entity.a(this, this.c);
         }

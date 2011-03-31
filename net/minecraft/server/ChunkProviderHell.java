@@ -177,6 +177,10 @@ public class ChunkProviderHell implements IChunkProvider {
         }
     }
 
+    public Chunk c(int i, int j) {
+        return this.b(i, j);
+    }
+
     public Chunk b(int i, int j) {
         this.h.setSeed((long) i * 341873128712L + (long) j * 132897987541L);
         byte[] abyte = new byte['\u8000'];

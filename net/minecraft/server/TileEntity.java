@@ -66,7 +66,7 @@ public class TileEntity {
         return tileentity;
     }
 
-    public void h() {
+    public void i() {
         if (this.d != null) {
             this.d.b(this.e, this.f, this.g, this);
         }

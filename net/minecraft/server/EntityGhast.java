@@ -14,13 +14,13 @@ public class EntityGhast extends EntityFlying implements IMonster {
     public EntityGhast(World world) {
         super(world);
         this.texture = "/mob/ghast.png";
-        this.a(4.0F, 4.0F);
+        this.b(4.0F, 4.0F);
         this.by = true;
     }
 
     protected void c_() {
         if (this.world.j == 0) {
-            this.C();
+            this.D();
         }
 
         this.e = this.f;

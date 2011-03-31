@@ -16,6 +16,10 @@ public class ShapedRecipes implements CraftingRecipe {
         this.e = itemstack;
     }
 
+    public ItemStack b() {
+        return this.e;
+    }
+
     public boolean a(InventoryCrafting inventorycrafting) {
         for (int i = 0; i <= 3 - this.b; ++i) {
             for (int j = 0; j <= 3 - this.c; ++j) {

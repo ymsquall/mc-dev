@@ -44,7 +44,7 @@ public class BlockChest extends BlockContainer {
     public void b(World world, int i, int j, int k) {
         TileEntityChest tileentitychest = (TileEntityChest) world.getTileEntity(i, j, k);
 
-        for (int l = 0; l < tileentitychest.m_(); ++l) {
+        for (int l = 0; l < tileentitychest.q_(); ++l) {
             ItemStack itemstack = tileentitychest.c_(l);
 
             if (itemstack != null) {

@@ -30,12 +30,12 @@ public class ItemDye extends Item {
         return false;
     }
 
-    public void b(ItemStack itemstack, EntityLiving entityliving) {
+    public void a(ItemStack itemstack, EntityLiving entityliving) {
         if (entityliving instanceof EntitySheep) {
             EntitySheep entitysheep = (EntitySheep) entityliving;
             int i = BlockCloth.c(itemstack.h());
 
-            if (!entitysheep.j_() && entitysheep.n() != i) {
+            if (!entitysheep.j_() && entitysheep.o() != i) {
                 entitysheep.a_(i);
                 --itemstack.count;
             }

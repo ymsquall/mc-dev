@@ -12,11 +12,11 @@ class SlotArmor extends Slot {
         this.d = l;
     }
 
-    public int d() {
+    public int c() {
         return 1;
     }
 
-    public boolean a(ItemStack itemstack) {
+    public boolean b(ItemStack itemstack) {
         return itemstack.a() instanceof ItemArmor ? ((ItemArmor) itemstack.a()).bi == this.d : (itemstack.a().id == Block.PUMPKIN.id ? this.d == 0 : false);
     }
 }

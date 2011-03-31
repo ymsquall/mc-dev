@@ -50,7 +50,7 @@ public class ServerConfigurationManager {
     }
 
     public void a(WorldServer worldserver) {
-        this.n = worldserver.m().d();
+        this.n = worldserver.o().d();
     }
 
     public int a() {
@@ -60,7 +60,7 @@ public class ServerConfigurationManager {
     public void a(EntityPlayer entityplayer) {
         this.b.add(entityplayer);
         this.n.b(entityplayer);
-        this.c.e.u.d((int) entityplayer.locX >> 4, (int) entityplayer.locZ >> 4);
+        this.c.e.u.c((int) entityplayer.locX >> 4, (int) entityplayer.locZ >> 4);
 
         while (this.c.e.a(entityplayer, entityplayer.boundingBox).size() != 0) {
             entityplayer.a(entityplayer.locX, entityplayer.locY + 1.0D, entityplayer.locZ);
@@ -119,11 +119,23 @@ public class ServerConfigurationManager {
         this.d.b(entityplayer);
         this.b.remove(entityplayer);
         this.c.e.e(entityplayer);
+        ChunkCoordinates chunkcoordinates = entityplayer.H();
         EntityPlayer entityplayer1 = new EntityPlayer(this.c, this.c.e, entityplayer.name, new ItemInWorldManager(this.c.e));
 
         entityplayer1.id = entityplayer.id;
         entityplayer1.a = entityplayer.a;
-        this.c.e.u.d((int) entityplayer1.locX >> 4, (int) entityplayer1.locZ >> 4);
+        if (chunkcoordinates != null) {
+            ChunkCoordinates chunkcoordinates1 = EntityHuman.a(this.c.e, chunkcoordinates);
+
+            if (chunkcoordinates1 != null) {
+                entityplayer1.c((double) ((float) chunkcoordinates1.a + 0.5F), (double) ((float) chunkcoordinates1.b + 0.1F), (double) ((float) chunkcoordinates1.c + 0.5F), 0.0F, 0.0F);
+                entityplayer1.a(chunkcoordinates);
+            } else {
+                entityplayer1.a.b((Packet) (new Packet70Bed(0)));
+            }
+        }
+
+        this.c.e.u.c((int) entityplayer1.locX >> 4, (int) entityplayer1.locZ >> 4);
 
         while (this.c.e.a(entityplayer1, entityplayer1.boundingBox).size() != 0) {
             entityplayer1.a(entityplayer1.locX, entityplayer1.locY + 1.0D, entityplayer1.locZ);
@@ -134,8 +146,8 @@ public class ServerConfigurationManager {
         this.d.a(entityplayer1);
         this.c.e.a(entityplayer1);
         this.b.add(entityplayer1);
-        entityplayer1.l();
-        entityplayer1.s();
+        entityplayer1.m();
+        entityplayer1.t();
         return entityplayer1;
     }
 

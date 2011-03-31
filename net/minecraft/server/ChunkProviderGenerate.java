@@ -1,5 +1,6 @@
 package net.minecraft.server;
 
+import java.util.Calendar;
 import java.util.Random;
 
 public class ChunkProviderGenerate implements IChunkProvider {
@@ -190,6 +191,10 @@ public class ChunkProviderGenerate implements IChunkProvider {
         }
     }
 
+    public Chunk c(int i, int j) {
+        return this.b(i, j);
+    }
+
     public Chunk b(int i, int j) {
         this.j.setSeed((long) i * 341873128712L + (long) j * 132897987541L);
         byte[] abyte = new byte['\u8000'];
@@ -323,11 +328,11 @@ public class ChunkProviderGenerate implements IChunkProvider {
         int l = j * 16;
         BiomeBase biomebase = this.p.a().a(k + 16, l + 16);
 
-        this.j.setSeed(this.p.j());
+        this.j.setSeed(this.p.k());
         long i1 = this.j.nextLong() / 2L * 2L + 1L;
         long j1 = this.j.nextLong() / 2L * 2L + 1L;
 
-        this.j.setSeed((long) i * i1 + (long) j * j1 ^ this.p.j());
+        this.j.setSeed((long) i * i1 + (long) j * j1 ^ this.p.k());
         double d0 = 0.25D;
         int k1;
         int l1;
@@ -551,6 +556,19 @@ public class ChunkProviderGenerate implements IChunkProvider {
                 if (d1 < 0.5D && j3 > 0 && j3 < 128 && this.p.isEmpty(j2, j3, k2) && this.p.getMaterial(j2, j3 - 1, k2).isSolid() && this.p.getMaterial(j2, j3 - 1, k2) != Material.ICE) {
                     this.p.e(j2, j3, k2, Block.SNOW.id);
                 }
+            }
+        }
+
+        Calendar calendar = Calendar.getInstance();
+
+        calendar.setTimeInMillis(System.currentTimeMillis());
+        if (calendar.get(2) == 3 && calendar.get(5) == 1) {
+            k2 = k + this.j.nextInt(16) + 8;
+            l2 = this.j.nextInt(128);
+            i3 = l + this.j.nextInt(16) + 8;
+            if (this.p.getTypeId(k2, l2, i3) == 0 && this.p.d(k2, l2 - 1, i3)) {
+                System.out.println("added a chest!!");
+                this.p.e(k2, l2, i3, Block.LOCKED_CHEST.id);
             }
         }
 

@@ -14,7 +14,7 @@ public class ContainerWorkbench extends Container {
         this.h = i;
         this.i = j;
         this.j = k;
-        this.a((Slot) (new SlotResult(this.a, this.b, 0, 124, 35)));
+        this.a((Slot) (new SlotResult(inventoryplayer.d, this.a, this.b, 0, 124, 35)));
 
         int l;
         int i1;

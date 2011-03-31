@@ -36,6 +36,14 @@ public class DataWatcher {
         return ((Byte) ((WatchableObject) this.b.get(Integer.valueOf(i))).b()).byteValue();
     }
 
+    public int b(int i) {
+        return ((Integer) ((WatchableObject) this.b.get(Integer.valueOf(i))).b()).intValue();
+    }
+
+    public String c(int i) {
+        return (String) ((WatchableObject) this.b.get(Integer.valueOf(i))).b();
+    }
+
     public void b(int i, Object object) {
         WatchableObject watchableobject = (WatchableObject) this.b.get(Integer.valueOf(i));
 

@@ -11,7 +11,7 @@ public class EntityItem extends Entity {
 
     public EntityItem(World world, double d0, double d1, double d2, ItemStack itemstack) {
         super(world);
-        this.a(0.25F, 0.25F);
+        this.b(0.25F, 0.25F);
         this.height = this.width / 2.0F;
         this.a(d0, d1, d2);
         this.a = itemstack;
@@ -19,12 +19,15 @@ public class EntityItem extends Entity {
         this.motX = (double) ((float) (Math.random() * 0.20000000298023224D - 0.10000000149011612D));
         this.motY = 0.20000000298023224D;
         this.motZ = (double) ((float) (Math.random() * 0.20000000298023224D - 0.10000000149011612D));
-        this.bg = false;
+    }
+
+    protected boolean l() {
+        return false;
     }
 
     public EntityItem(World world) {
         super(world);
-        this.a(0.25F, 0.25F);
+        this.b(0.25F, 0.25F);
         this.height = this.width / 2.0F;
     }
 
@@ -70,7 +73,7 @@ public class EntityItem extends Entity {
         ++this.e;
         ++this.b;
         if (this.b >= 6000) {
-            this.C();
+            this.D();
         }
     }
 
@@ -161,10 +164,10 @@ public class EntityItem extends Entity {
     }
 
     public boolean a(Entity entity, int i) {
-        this.R();
+        this.W();
         this.f -= i;
         if (this.f <= 0) {
-            this.C();
+            this.D();
         }
 
         return false;
@@ -191,7 +194,7 @@ public class EntityItem extends Entity {
             if (this.c == 0 && entityhuman.inventory.a(this.a)) {
                 this.world.a(this, "random.pop", 0.2F, ((this.random.nextFloat() - this.random.nextFloat()) * 0.7F + 1.0F) * 2.0F);
                 entityhuman.b(this, i);
-                this.C();
+                this.D();
             }
         }
     }

@@ -76,27 +76,31 @@ public class World implements IBlockAccess {
         this.m.a(this);
         this.o = this.b();
         if (flag) {
-            this.r = true;
-            int j = 0;
-            byte b0 = 64;
-
-            int k;
-
-            for (k = 0; !this.m.a(j, k); k += this.k.nextInt(64) - this.k.nextInt(64)) {
-                j += this.k.nextInt(64) - this.k.nextInt(64);
-            }
-
-            this.q.a(j, b0, k);
-            this.r = false;
+            this.c();
         }
 
-        this.f();
+        this.g();
     }
 
     protected IChunkProvider b() {
         IChunkLoader ichunkloader = this.p.a(this.m);
 
         return new ChunkProviderLoadOrGenerate(this, ichunkloader, this.m.c());
+    }
+
+    protected void c() {
+        this.r = true;
+        int i = 0;
+        byte b0 = 64;
+
+        int j;
+
+        for (j = 0; !this.m.a(i, j); j += this.k.nextInt(64) - this.k.nextInt(64)) {
+            i += this.k.nextInt(64) - this.k.nextInt(64);
+        }
+
+        this.q.a(i, b0, j);
+        this.r = false;
     }
 
     public int a(int i, int j) {
@@ -115,7 +119,7 @@ public class World implements IBlockAccess {
                 iprogressupdate.a("Saving level");
             }
 
-            this.r();
+            this.t();
             if (iprogressupdate != null) {
                 iprogressupdate.b("Saving chunks");
             }
@@ -124,8 +128,8 @@ public class World implements IBlockAccess {
         }
     }
 
-    private void r() {
-        this.i();
+    private void t() {
+        this.j();
         this.p.a(this.q, this.d);
     }
 
@@ -489,7 +493,7 @@ public class World implements IBlockAccess {
         return this.m.f[this.j(i, j, k)];
     }
 
-    public boolean c() {
+    public boolean d() {
         return this.e < 4;
     }
 
@@ -681,7 +685,7 @@ public class World implements IBlockAccess {
                 EntityHuman entityhuman = (EntityHuman) entity;
 
                 this.d.add(entityhuman);
-                this.o();
+                this.q();
             }
 
             this.c(i, j).a(entity);
@@ -712,18 +716,18 @@ public class World implements IBlockAccess {
             entity.b((Entity) null);
         }
 
-        entity.C();
+        entity.D();
         if (entity instanceof EntityHuman) {
             this.d.remove((EntityHuman) entity);
-            this.o();
+            this.q();
         }
     }
 
     public void e(Entity entity) {
-        entity.C();
+        entity.D();
         if (entity instanceof EntityHuman) {
             this.d.remove((EntityHuman) entity);
-            this.o();
+            this.q();
         }
 
         int i = entity.chunkX;
@@ -850,7 +854,7 @@ public class World implements IBlockAccess {
         }
     }
 
-    public void d() {
+    public void e() {
         this.b.removeAll(this.v);
 
         int i;
@@ -924,7 +928,7 @@ public class World implements IBlockAccess {
             entity.lastPitch = entity.pitch;
             if (flag && entity.bA) {
                 if (entity.vehicle != null) {
-                    entity.x();
+                    entity.o_();
                 } else {
                     entity.f_();
                 }
@@ -984,7 +988,7 @@ public class World implements IBlockAccess {
         for (int i = 0; i < list.size(); ++i) {
             Entity entity = (Entity) list.get(i);
 
-            if (!entity.dead && entity.aC) {
+            if (!entity.dead && entity.aD) {
                 return false;
             }
         }
@@ -1218,7 +1222,7 @@ public class World implements IBlockAccess {
         return block == null ? false : block.a();
     }
 
-    public boolean e() {
+    public boolean f() {
         if (this.C >= 50) {
             return false;
         } else {
@@ -1295,7 +1299,7 @@ public class World implements IBlockAccess {
         }
     }
 
-    public void f() {
+    public void g() {
         int i = this.a(1.0F);
 
         if (i != this.e) {
@@ -1308,10 +1312,10 @@ public class World implements IBlockAccess {
         this.E = flag1;
     }
 
-    public void g() {
+    public void h() {
         long i;
 
-        if (this.q()) {
+        if (this.s()) {
             boolean flag = false;
 
             if (this.D && this.j >= 1) {
@@ -1321,7 +1325,7 @@ public class World implements IBlockAccess {
             if (!flag) {
                 i = this.q.f() + 24000L;
                 this.q.a(i - i % 24000L);
-                this.p();
+                this.r();
             }
         }
 
@@ -1344,10 +1348,10 @@ public class World implements IBlockAccess {
 
         this.q.a(i);
         this.a(false);
-        this.h();
+        this.i();
     }
 
-    protected void h() {
+    protected void i() {
         this.F.clear();
 
         int i;
@@ -1410,10 +1414,10 @@ public class World implements IBlockAccess {
                 j1 = l & 15;
                 k1 = l >> 8 & 15;
                 l1 = l >> 16 & 127;
-                byte b1 = chunk.b[j1 << 11 | k1 << 7 | l1];
+                int i2 = chunk.b[j1 << 11 | k1 << 7 | l1] & 255;
 
-                if (Block.n[b1]) {
-                    Block.byId[b1].a(this, j1 + i, l1, k1 + j, this.k);
+                if (Block.n[i2]) {
+                    Block.byId[i2].a(this, j1 + i, l1, k1 + j, this.k);
                 }
             }
         }
@@ -1615,6 +1619,16 @@ public class World implements IBlockAccess {
         return entityhuman;
     }
 
+    public EntityHuman a(String s) {
+        for (int i = 0; i < this.d.size(); ++i) {
+            if (s.equals(((EntityHuman) this.d.get(i)).name)) {
+                return (EntityHuman) this.d.get(i);
+            }
+        }
+
+        return null;
+    }
+
     public byte[] c(int i, int j, int k, int l, int i1, int j1) {
         byte[] abyte = new byte[l * i1 * j1 * 5 / 2];
         int k1 = i >> 4;
@@ -1664,7 +1678,7 @@ public class World implements IBlockAccess {
         return abyte;
     }
 
-    public void i() {
+    public void j() {
         this.p.b();
     }
 
@@ -1672,15 +1686,15 @@ public class World implements IBlockAccess {
         this.q.a(i);
     }
 
-    public long j() {
+    public long k() {
         return this.q.b();
     }
 
-    public long k() {
+    public long l() {
         return this.q.f();
     }
 
-    public ChunkCoordinates l() {
+    public ChunkCoordinates m() {
         return new ChunkCoordinates(this.q.c(), this.q.d(), this.q.e());
     }
 
@@ -1690,6 +1704,10 @@ public class World implements IBlockAccess {
 
     public void a(Entity entity, byte b0) {}
 
+    public IChunkProvider n() {
+        return this.o;
+    }
+
     public void d(int i, int j, int k, int l, int i1) {
         int j1 = this.getTypeId(i, j, k);
 
@@ -1698,42 +1716,42 @@ public class World implements IBlockAccess {
         }
     }
 
-    public IDataManager m() {
+    public IDataManager o() {
         return this.p;
     }
 
-    public WorldData n() {
+    public WorldData p() {
         return this.q;
     }
 
-    public void o() {
+    public void q() {
         this.A = !this.d.isEmpty();
         Iterator iterator = this.d.iterator();
 
         while (iterator.hasNext()) {
             EntityHuman entityhuman = (EntityHuman) iterator.next();
 
-            if (!entityhuman.E()) {
+            if (!entityhuman.F()) {
                 this.A = false;
                 break;
             }
         }
     }
 
-    protected void p() {
+    protected void r() {
         this.A = false;
         Iterator iterator = this.d.iterator();
 
         while (iterator.hasNext()) {
             EntityHuman entityhuman = (EntityHuman) iterator.next();
 
-            if (entityhuman.E()) {
-                entityhuman.a(false, false);
+            if (entityhuman.F()) {
+                entityhuman.a(false, false, false);
             }
         }
     }
 
-    public boolean q() {
+    public boolean s() {
         if (this.A && !this.isStatic) {
             Iterator iterator = this.d.iterator();
 
@@ -1745,7 +1763,7 @@ public class World implements IBlockAccess {
                 }
 
                 entityhuman = (EntityHuman) iterator.next();
-            } while (entityhuman.F());
+            } while (entityhuman.G());
 
             return false;
         } else {

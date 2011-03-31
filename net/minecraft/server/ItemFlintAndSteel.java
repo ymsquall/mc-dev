@@ -5,7 +5,7 @@ public class ItemFlintAndSteel extends Item {
     public ItemFlintAndSteel(int i) {
         super(i);
         this.maxStackSize = 1;
-        this.durability = 64;
+        this.d(64);
     }
 
     public boolean a(ItemStack itemstack, EntityHuman entityhuman, World world, int i, int j, int k, int l) {
@@ -40,7 +40,7 @@ public class ItemFlintAndSteel extends Item {
             world.e(i, j, k, Block.FIRE.id);
         }
 
-        itemstack.b(1);
+        itemstack.a(1, entityhuman);
         return true;
     }
 }

@@ -82,7 +82,7 @@ public class BlockLadder extends Block {
         }
 
         if (!flag) {
-            this.b_(world, i, j, k, i1);
+            this.a_(world, i, j, k, i1);
             world.e(i, j, k, 0);
         }
 

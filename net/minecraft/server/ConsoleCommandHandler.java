@@ -165,7 +165,7 @@ public class ConsoleCommandHandler {
                                     try {
                                         i = Integer.parseInt(astring[2]);
                                         if ("add".equalsIgnoreCase(s3)) {
-                                            worldserver.a(worldserver.k() + (long) i);
+                                            worldserver.a(worldserver.l() + (long) i);
                                             this.a(s1, "Added " + i + " to time");
                                         } else if ("set".equalsIgnoreCase(s3)) {
                                             worldserver.a((long) i);

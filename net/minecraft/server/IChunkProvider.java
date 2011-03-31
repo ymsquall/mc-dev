@@ -6,6 +6,8 @@ public interface IChunkProvider {
 
     Chunk b(int i, int j);
 
+    Chunk c(int i, int j);
+
     void a(IChunkProvider ichunkprovider, int i, int j);
 
     boolean a(boolean flag, IProgressUpdate iprogressupdate);

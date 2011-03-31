@@ -24,7 +24,7 @@ public class BlockDiode extends Block {
 
     public void a(World world, int i, int j, int k, Random random) {
         int l = world.getData(i, j, k);
-        boolean flag = this.g(world, i, j, k, l);
+        boolean flag = this.f(world, i, j, k, l);
 
         if (this.c && !flag) {
             world.b(i, j, k, Block.DIODE_OFF.id, l);
@@ -66,11 +66,11 @@ public class BlockDiode extends Block {
 
     public void a(World world, int i, int j, int k, int l) {
         if (!this.f(world, i, j, k)) {
-            this.b_(world, i, j, k, world.getData(i, j, k));
+            this.a_(world, i, j, k, world.getData(i, j, k));
             world.e(i, j, k, 0);
         } else {
             int i1 = world.getData(i, j, k);
-            boolean flag = this.g(world, i, j, k, i1);
+            boolean flag = this.f(world, i, j, k, i1);
             int j1 = (i1 & 12) >> 2;
 
             if (this.c && !flag) {
@@ -81,7 +81,7 @@ public class BlockDiode extends Block {
         }
     }
 
-    private boolean g(World world, int i, int j, int k, int l) {
+    private boolean f(World world, int i, int j, int k, int l) {
         int i1 = l & 3;
 
         switch (i1) {
@@ -119,7 +119,7 @@ public class BlockDiode extends Block {
         int l = ((MathHelper.b((double) (entityliving.yaw * 4.0F / 360.0F) + 0.5D) & 3) + 2) % 4;
 
         world.c(i, j, k, l);
-        boolean flag = this.g(world, i, j, k, l);
+        boolean flag = this.f(world, i, j, k, l);
 
         if (flag) {
             world.c(i, j, k, this.id, 1);

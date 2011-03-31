@@ -12,8 +12,8 @@ public class InventoryLargeChest implements IInventory {
         this.c = iinventory1;
     }
 
-    public int m_() {
-        return this.b.m_() + this.c.m_();
+    public int q_() {
+        return this.b.q_() + this.c.q_();
     }
 
     public String c() {
@@ -21,28 +21,28 @@ public class InventoryLargeChest implements IInventory {
     }
 
     public ItemStack c_(int i) {
-        return i >= this.b.m_() ? this.c.c_(i - this.b.m_()) : this.b.c_(i);
+        return i >= this.b.q_() ? this.c.c_(i - this.b.q_()) : this.b.c_(i);
     }
 
     public ItemStack a(int i, int j) {
-        return i >= this.b.m_() ? this.c.a(i - this.b.m_(), j) : this.b.a(i, j);
+        return i >= this.b.q_() ? this.c.a(i - this.b.q_(), j) : this.b.a(i, j);
     }
 
     public void a(int i, ItemStack itemstack) {
-        if (i >= this.b.m_()) {
-            this.c.a(i - this.b.m_(), itemstack);
+        if (i >= this.b.q_()) {
+            this.c.a(i - this.b.q_(), itemstack);
         } else {
             this.b.a(i, itemstack);
         }
     }
 
-    public int n_() {
-        return this.b.n_();
+    public int r_() {
+        return this.b.r_();
     }
 
-    public void h() {
-        this.b.h();
-        this.c.h();
+    public void i() {
+        this.b.i();
+        this.c.i();
     }
 
     public boolean a_(EntityHuman entityhuman) {

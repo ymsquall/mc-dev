@@ -68,7 +68,7 @@ public class BlockCake extends Block {
 
     public void a(World world, int i, int j, int k, int l) {
         if (!this.f(world, i, j, k)) {
-            this.b_(world, i, j, k, world.getData(i, j, k));
+            this.a_(world, i, j, k, world.getData(i, j, k));
             world.e(i, j, k, 0);
         }
     }

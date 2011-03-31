@@ -14,12 +14,12 @@ public class InventoryCrafting implements IInventory {
         this.b = i;
     }
 
-    public int m_() {
+    public int q_() {
         return this.a.length;
     }
 
     public ItemStack c_(int i) {
-        return i >= this.m_() ? null : this.a[i];
+        return i >= this.q_() ? null : this.a[i];
     }
 
     public ItemStack b(int i, int j) {
@@ -64,11 +64,11 @@ public class InventoryCrafting implements IInventory {
         this.c.a((IInventory) this);
     }
 
-    public int n_() {
+    public int r_() {
         return 64;
     }
 
-    public void h() {}
+    public void i() {}
 
     public boolean a_(EntityHuman entityhuman) {
         return true;

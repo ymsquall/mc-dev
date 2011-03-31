@@ -28,7 +28,7 @@ class PlayerInstance {
         this.c = i;
         this.d = j;
         this.e = new ChunkCoordIntPair(i, j);
-        PlayerManager.a(playermanager).e.u.d(i, j);
+        PlayerManager.a(playermanager).e.u.c(i, j);
     }
 
     public void a(EntityPlayer entityplayer) {
@@ -55,7 +55,7 @@ class PlayerInstance {
                     PlayerManager.c(this.a).remove(this);
                 }
 
-                PlayerManager.a(this.a).e.u.c(this.c, this.d);
+                PlayerManager.a(this.a).e.u.d(this.c, this.d);
             }
 
             entityplayer.f.remove(this.e);

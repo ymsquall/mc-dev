@@ -9,6 +9,10 @@ public class WorldLoader implements Convertable {
     protected final File a;
 
     public WorldLoader(File file1) {
+        if (!file1.exists()) {
+            file1.mkdirs();
+        }
+
         this.a = file1;
     }
 

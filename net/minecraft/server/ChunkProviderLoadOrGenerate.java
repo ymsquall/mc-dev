@@ -22,14 +22,14 @@ public class ChunkProviderLoadOrGenerate implements IChunkProvider {
         this.d = ichunkprovider;
     }
 
-    public boolean c(int i, int j) {
+    public boolean d(int i, int j) {
         byte b0 = 15;
 
         return i >= this.i - b0 && j >= this.j - b0 && i <= this.i + b0 && j <= this.j + b0;
     }
 
     public boolean a(int i, int j) {
-        if (!this.c(i, j)) {
+        if (!this.d(i, j)) {
             return false;
         } else if (i == this.a && j == this.b && this.h != null) {
             return true;
@@ -42,10 +42,14 @@ public class ChunkProviderLoadOrGenerate implements IChunkProvider {
         }
     }
 
+    public Chunk c(int i, int j) {
+        return this.b(i, j);
+    }
+
     public Chunk b(int i, int j) {
         if (i == this.a && j == this.b && this.h != null) {
             return this.h;
-        } else if (!this.g.r && !this.c(i, j)) {
+        } else if (!this.g.r && !this.d(i, j)) {
             return this.c;
         } else {
             int k = i & 31;
@@ -59,7 +63,7 @@ public class ChunkProviderLoadOrGenerate implements IChunkProvider {
                     this.a(this.f[i1]);
                 }
 
-                Chunk chunk = this.d(i, j);
+                Chunk chunk = this.e(i, j);
 
                 if (chunk == null) {
                     if (this.d == null) {
@@ -99,7 +103,7 @@ public class ChunkProviderLoadOrGenerate implements IChunkProvider {
         }
     }
 
-    private Chunk d(int i, int j) {
+    private Chunk e(int i, int j) {
         if (this.e == null) {
             return this.c;
         } else {
@@ -107,7 +111,7 @@ public class ChunkProviderLoadOrGenerate implements IChunkProvider {
                 Chunk chunk = this.e.a(this.g, i, j);
 
                 if (chunk != null) {
-                    chunk.r = this.g.k();
+                    chunk.r = this.g.l();
                 }
 
                 return chunk;
@@ -131,7 +135,7 @@ public class ChunkProviderLoadOrGenerate implements IChunkProvider {
     private void b(Chunk chunk) {
         if (this.e != null) {
             try {
-                chunk.r = this.g.k();
+                chunk.r = this.g.l();
                 this.e.a(this.g, chunk);
             } catch (IOException ioexception) {
                 ioexception.printStackTrace();

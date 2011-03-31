@@ -17,7 +17,7 @@ public class EntityPainting extends Entity {
         this.f = 0;
         this.a = 0;
         this.height = 0.0F;
-        this.a(0.5F, 0.5F);
+        this.b(0.5F, 0.5F);
     }
 
     public EntityPainting(World world, int i, int j, int k, int l) {
@@ -116,7 +116,7 @@ public class EntityPainting extends Entity {
         if (this.f++ == 100 && !this.world.isStatic) {
             this.f = 0;
             if (!this.h()) {
-                this.C();
+                this.D();
                 this.world.a((Entity) (new EntityItem(this.world, this.locX, this.locY, this.locZ, new ItemStack(Item.PAINTING))));
             }
         }
@@ -186,8 +186,8 @@ public class EntityPainting extends Entity {
 
     public boolean a(Entity entity, int i) {
         if (!this.dead && !this.world.isStatic) {
-            this.C();
-            this.R();
+            this.D();
+            this.W();
             this.world.a((Entity) (new EntityItem(this.world, this.locX, this.locY, this.locZ, new ItemStack(Item.PAINTING))));
         }
 

@@ -26,7 +26,7 @@ public class TileEntityNote extends TileEntity {
 
     public void a() {
         this.a = (byte) ((this.a + 1) % 25);
-        this.h();
+        this.i();
     }
 
     public void a(World world, int i, int j, int k) {

@@ -71,6 +71,7 @@ public class ChunkLoader implements IChunkLoader {
                     chunk = a(world, nbttagcompound.k("Level"));
                 }
 
+                chunk.h();
                 return chunk;
             } catch (Exception exception) {
                 exception.printStackTrace();
@@ -81,11 +82,11 @@ public class ChunkLoader implements IChunkLoader {
     }
 
     public void a(World world, Chunk chunk) {
-        world.i();
+        world.j();
         File file1 = this.a(chunk.j, chunk.k);
 
         if (file1.exists()) {
-            WorldData worlddata = world.n();
+            WorldData worlddata = world.p();
 
             worlddata.b(worlddata.g() - file1.length());
         }
@@ -105,7 +106,7 @@ public class ChunkLoader implements IChunkLoader {
             }
 
             file2.renameTo(file1);
-            WorldData worlddata1 = world.n();
+            WorldData worlddata1 = world.p();
 
             worlddata1.b(worlddata1.g() + file1.length());
         } catch (Exception exception) {
@@ -114,10 +115,10 @@ public class ChunkLoader implements IChunkLoader {
     }
 
     public static void a(Chunk chunk, World world, NBTTagCompound nbttagcompound) {
-        world.i();
+        world.j();
         nbttagcompound.a("xPos", chunk.j);
         nbttagcompound.a("zPos", chunk.k);
-        nbttagcompound.a("LastUpdate", world.k());
+        nbttagcompound.a("LastUpdate", world.l());
         nbttagcompound.a("Blocks", chunk.b);
         nbttagcompound.a("Data", chunk.e.a);
         nbttagcompound.a("SkyLight", chunk.f.a);

@@ -34,7 +34,7 @@ public class WorldProvider {
     }
 
     public IChunkProvider c() {
-        return new ChunkProviderGenerate(this.a, this.a.j());
+        return new ChunkProviderGenerate(this.a, this.a.k());
     }
 
     public boolean a(int i, int j) {

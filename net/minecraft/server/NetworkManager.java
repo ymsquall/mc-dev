@@ -4,6 +4,7 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.net.Socket;
 import java.net.SocketAddress;
+import java.net.SocketException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -38,7 +39,13 @@ public class NetworkManager {
         this.f = socket;
         this.g = socket.getRemoteSocketAddress();
         this.n = nethandler;
-        socket.setTrafficClass(24);
+
+        try {
+            socket.setTrafficClass(24);
+        } catch (SocketException socketexception) {
+            System.err.println(socketexception.getMessage());
+        }
+
         this.h = new DataInputStream(socket.getInputStream());
         this.i = new DataOutputStream(socket.getOutputStream());
         this.q = new NetworkReaderThread(this, s + " read thread");

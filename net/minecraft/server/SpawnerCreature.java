@@ -44,7 +44,7 @@ public final class SpawnerCreature {
             }
 
             i = 0;
-            ChunkCoordinates chunkcoordinates = world.l();
+            ChunkCoordinates chunkcoordinates = world.m();
             EnumCreatureType[] aenumcreaturetype = EnumCreatureType.values();
 
             j = aenumcreaturetype.length;
@@ -55,36 +55,58 @@ public final class SpawnerCreature {
                 if ((!enumcreaturetype.d() || flag1) && (enumcreaturetype.d() || flag) && world.a(enumcreaturetype.a()) <= enumcreaturetype.b() * b.size() / 256) {
                     Iterator iterator = b.iterator();
 
-                    label91:
+                    label113:
                     while (iterator.hasNext()) {
                         ChunkCoordIntPair chunkcoordintpair = (ChunkCoordIntPair) iterator.next();
                         BiomeBase biomebase = world.a().a(chunkcoordintpair);
-                        Class[] aclass = biomebase.a(enumcreaturetype);
+                        List list = biomebase.a(enumcreaturetype);
 
-                        if (aclass != null && aclass.length != 0) {
-                            int k1 = world.k.nextInt(aclass.length);
+                        if (list != null && !list.isEmpty()) {
+                            int k1 = 0;
+
+                            BiomeMeta biomemeta;
+
+                            for (Iterator iterator1 = list.iterator(); iterator1.hasNext(); k1 += biomemeta.b) {
+                                biomemeta = (BiomeMeta) iterator1.next();
+                            }
+
+                            int l1 = world.k.nextInt(k1);
+
+                            biomemeta = (BiomeMeta) list.get(0);
+                            Iterator iterator2 = list.iterator();
+
+                            while (iterator2.hasNext()) {
+                                BiomeMeta biomemeta1 = (BiomeMeta) iterator2.next();
+
+                                l1 -= biomemeta1.b;
+                                if (l1 < 0) {
+                                    biomemeta = biomemeta1;
+                                    break;
+                                }
+                            }
+
                             ChunkPosition chunkposition = a(world, chunkcoordintpair.a * 16, chunkcoordintpair.b * 16);
-                            int l1 = chunkposition.a;
-                            int i2 = chunkposition.b;
-                            int j2 = chunkposition.c;
+                            int i2 = chunkposition.a;
+                            int j2 = chunkposition.b;
+                            int k2 = chunkposition.c;
 
-                            if (!world.d(l1, i2, j2) && world.getMaterial(l1, i2, j2) == enumcreaturetype.c()) {
-                                int k2 = 0;
+                            if (!world.d(i2, j2, k2) && world.getMaterial(i2, j2, k2) == enumcreaturetype.c()) {
+                                int l2 = 0;
 
-                                for (int l2 = 0; l2 < 3; ++l2) {
-                                    int i3 = l1;
+                                for (int i3 = 0; i3 < 3; ++i3) {
                                     int j3 = i2;
                                     int k3 = j2;
+                                    int l3 = k2;
                                     byte b1 = 6;
 
-                                    for (int l3 = 0; l3 < 4; ++l3) {
-                                        i3 += world.k.nextInt(b1) - world.k.nextInt(b1);
-                                        j3 += world.k.nextInt(1) - world.k.nextInt(1);
-                                        k3 += world.k.nextInt(b1) - world.k.nextInt(b1);
-                                        if (a(enumcreaturetype, world, i3, j3, k3)) {
-                                            float f = (float) i3 + 0.5F;
-                                            float f1 = (float) j3;
-                                            float f2 = (float) k3 + 0.5F;
+                                    for (int i4 = 0; i4 < 4; ++i4) {
+                                        j3 += world.k.nextInt(b1) - world.k.nextInt(b1);
+                                        k3 += world.k.nextInt(1) - world.k.nextInt(1);
+                                        l3 += world.k.nextInt(b1) - world.k.nextInt(b1);
+                                        if (a(enumcreaturetype, world, j3, k3, l3)) {
+                                            float f = (float) j3 + 0.5F;
+                                            float f1 = (float) k3;
+                                            float f2 = (float) l3 + 0.5F;
 
                                             if (world.a((double) f, (double) f1, (double) f2, 24.0D) == null) {
                                                 float f3 = f - (float) chunkcoordinates.a;
@@ -96,7 +118,7 @@ public final class SpawnerCreature {
                                                     EntityLiving entityliving;
 
                                                     try {
-                                                        entityliving = (EntityLiving) aclass[k1].getConstructor(new Class[] { World.class}).newInstance(new Object[] { world});
+                                                        entityliving = (EntityLiving) biomemeta.a.getConstructor(new Class[] { World.class}).newInstance(new Object[] { world});
                                                     } catch (Exception exception) {
                                                         exception.printStackTrace();
                                                         return i;
@@ -104,15 +126,15 @@ public final class SpawnerCreature {
 
                                                     entityliving.c((double) f, (double) f1, (double) f2, world.k.nextFloat() * 360.0F, 0.0F);
                                                     if (entityliving.b()) {
-                                                        ++k2;
+                                                        ++l2;
                                                         world.a((Entity) entityliving);
                                                         a(entityliving, world, f, f1, f2);
-                                                        if (k2 >= entityliving.j()) {
-                                                            continue label91;
+                                                        if (l2 >= entityliving.j()) {
+                                                            continue label113;
                                                         }
                                                     }
 
-                                                    i += k2;
+                                                    i += l2;
                                                 }
                                             }
                                         }
@@ -201,13 +223,17 @@ public final class SpawnerCreature {
                                 PathPoint pathpoint = pathentity.c();
 
                                 if (Math.abs((double) pathpoint.a - entityhuman.locX) < 1.5D && Math.abs((double) pathpoint.c - entityhuman.locZ) < 1.5D && Math.abs((double) pathpoint.b - entityhuman.locY) < 1.5D) {
-                                    ChunkCoordinates chunkcoordinates = BlockBed.g(world, MathHelper.b(entityhuman.locX), MathHelper.b(entityhuman.locY), MathHelper.b(entityhuman.locZ), 1);
+                                    ChunkCoordinates chunkcoordinates = BlockBed.f(world, MathHelper.b(entityhuman.locX), MathHelper.b(entityhuman.locY), MathHelper.b(entityhuman.locZ), 1);
+
+                                    if (chunkcoordinates == null) {
+                                        chunkcoordinates = new ChunkCoordinates(j, j1 + 1, k);
+                                    }
 
                                     entityliving.c((double) ((float) chunkcoordinates.a + 0.5F), (double) chunkcoordinates.b, (double) ((float) chunkcoordinates.c + 0.5F), 0.0F, 0.0F);
                                     world.a((Entity) entityliving);
                                     a(entityliving, world, (float) chunkcoordinates.a + 0.5F, (float) chunkcoordinates.b, (float) chunkcoordinates.c + 0.5F);
-                                    entityhuman.a(true, false);
-                                    entityliving.G();
+                                    entityhuman.a(true, false, false);
+                                    entityliving.K();
                                     flag = true;
                                     flag1 = true;
                                 }

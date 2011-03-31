@@ -18,7 +18,7 @@ public class ThreadCommandReader extends Thread {
 
         try {
             while (!this.a.g && MinecraftServer.a(this.a) && (s = bufferedreader.readLine()) != null) {
-                this.a.a(s, (ICommandListener) this.a);
+                this.a.a(s, this.a);
             }
         } catch (IOException ioexception) {
             ioexception.printStackTrace();

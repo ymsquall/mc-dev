@@ -10,16 +10,20 @@ public class EntityCreature extends EntityLiving {
         super(world);
     }
 
+    protected boolean u() {
+        return false;
+    }
+
     protected void c_() {
-        this.e = false;
+        this.e = this.u();
         float f = 16.0F;
 
         if (this.d == null) {
-            this.d = this.l();
+            this.d = this.m();
             if (this.d != null) {
                 this.a = this.world.a(this, this.d, f);
             }
-        } else if (!this.d.J()) {
+        } else if (!this.d.N()) {
             this.d = null;
         } else {
             float f1 = this.d.f(this);
@@ -31,7 +35,7 @@ public class EntityCreature extends EntityLiving {
 
         if (!this.e && this.d != null && (this.a == null || this.random.nextInt(20) == 0)) {
             this.a = this.world.a(this, this.d, f);
-        } else if (this.a == null && this.random.nextInt(80) == 0 || this.random.nextInt(80) == 0) {
+        } else if (!this.e && (this.a == null && this.random.nextInt(80) == 0 || this.random.nextInt(80) == 0)) {
             boolean flag = false;
             int i = -1;
             int j = -1;
@@ -60,7 +64,7 @@ public class EntityCreature extends EntityLiving {
 
         int l1 = MathHelper.b(this.boundingBox.b);
         boolean flag1 = this.g_();
-        boolean flag2 = this.Q();
+        boolean flag2 = this.V();
 
         this.pitch = 0.0F;
         if (this.a != null && this.random.nextInt(100) != 0) {
@@ -119,10 +123,10 @@ public class EntityCreature extends EntityLiving {
             }
 
             if (this.d != null) {
-                this.b(this.d, 30.0F);
+                this.a(this.d, 30.0F, 30.0F);
             }
 
-            if (this.aV) {
+            if (this.aW) {
                 this.ax = true;
             }
 
@@ -141,7 +145,7 @@ public class EntityCreature extends EntityLiving {
         return 0.0F;
     }
 
-    protected Entity l() {
+    protected Entity m() {
         return null;
     }
 
@@ -151,5 +155,21 @@ public class EntityCreature extends EntityLiving {
         int k = MathHelper.b(this.locZ);
 
         return super.b() && this.a(i, j, k) >= 0.0F;
+    }
+
+    public boolean z() {
+        return this.a != null;
+    }
+
+    public void a(PathEntity pathentity) {
+        this.a = pathentity;
+    }
+
+    public Entity A() {
+        return this.d;
+    }
+
+    public void c(Entity entity) {
+        this.d = entity;
     }
 }

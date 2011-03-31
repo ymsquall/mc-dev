@@ -11,7 +11,7 @@ public class ContainerFurnace extends Container {
         this.a = tileentityfurnace;
         this.a(new Slot(tileentityfurnace, 0, 56, 17));
         this.a(new Slot(tileentityfurnace, 1, 56, 53));
-        this.a(new Slot(tileentityfurnace, 2, 116, 35));
+        this.a(new SlotResult2(tileentityfurnace, 2, 116, 35));
 
         int i;
 

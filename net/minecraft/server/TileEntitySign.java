@@ -4,6 +4,7 @@ public class TileEntitySign extends TileEntity {
 
     public String[] a = new String[] { "", "", "", ""};
     public int b = -1;
+    private boolean c = true;
 
     public TileEntitySign() {}
 
@@ -16,6 +17,7 @@ public class TileEntitySign extends TileEntity {
     }
 
     public void a(NBTTagCompound nbttagcompound) {
+        this.c = false;
         super.a(nbttagcompound);
 
         for (int i = 0; i < 4; ++i) {
@@ -34,5 +36,9 @@ public class TileEntitySign extends TileEntity {
         }
 
         return new Packet130UpdateSign(this.e, this.f, this.g, astring);
+    }
+
+    public boolean a() {
+        return this.c;
     }
 }

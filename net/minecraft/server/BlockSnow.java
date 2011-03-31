@@ -30,7 +30,7 @@ public class BlockSnow extends Block {
 
     private boolean g(World world, int i, int j, int k) {
         if (!this.a(world, i, j, k)) {
-            this.b_(world, i, j, k, world.getData(i, j, k));
+            this.a_(world, i, j, k, world.getData(i, j, k));
             world.e(i, j, k, 0);
             return false;
         } else {
@@ -38,7 +38,7 @@ public class BlockSnow extends Block {
         }
     }
 
-    public void a_(World world, int i, int j, int k, int l) {
+    public void a(World world, EntityHuman entityhuman, int i, int j, int k, int l) {
         int i1 = Item.SNOW_BALL.id;
         float f = 0.7F;
         double d0 = (double) (world.k.nextFloat() * f) + (double) (1.0F - f) * 0.5D;
@@ -49,6 +49,7 @@ public class BlockSnow extends Block {
         entityitem.c = 10;
         world.a((Entity) entityitem);
         world.e(i, j, k, 0);
+        entityhuman.a(StatisticList.y[this.id], 1);
     }
 
     public int a(int i, Random random) {
@@ -61,7 +62,7 @@ public class BlockSnow extends Block {
 
     public void a(World world, int i, int j, int k, Random random) {
         if (world.a(EnumSkyBlock.BLOCK, i, j, k) > 11) {
-            this.b_(world, i, j, k, world.getData(i, j, k));
+            this.a_(world, i, j, k, world.getData(i, j, k));
             world.e(i, j, k, 0);
         }
     }

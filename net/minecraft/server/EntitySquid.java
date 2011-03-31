@@ -20,7 +20,7 @@ public class EntitySquid extends EntityWaterAnimal {
     public EntitySquid(World world) {
         super(world);
         this.texture = "/mob/squid.png";
-        this.a(0.95F, 0.95F);
+        this.b(0.95F, 0.95F);
         this.l = 1.0F / (this.random.nextFloat() + 1.0F) * 0.2F;
     }
 
@@ -52,7 +52,7 @@ public class EntitySquid extends EntityWaterAnimal {
         return 0;
     }
 
-    protected void o() {
+    protected void p() {
         int i = this.random.nextInt(3) + 1;
 
         for (int j = 0; j < i; ++j) {
@@ -68,8 +68,8 @@ public class EntitySquid extends EntityWaterAnimal {
         return this.world.a(this.boundingBox.b(0.0D, -0.6000000238418579D, 0.0D), Material.WATER, this);
     }
 
-    public void q() {
-        super.q();
+    public void r() {
+        super.r();
         this.b = this.a;
         this.f = this.c;
         this.h = this.g;
@@ -124,7 +124,7 @@ public class EntitySquid extends EntityWaterAnimal {
         }
     }
 
-    public void b(float f, float f1) {
+    public void a(float f, float f1) {
         this.c(this.motX, this.motY, this.motZ);
     }
 

@@ -9,6 +9,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -44,7 +45,7 @@ public class MinecraftServer implements Runnable, ICommandListener {
         threadcommandreader.setDaemon(true);
         threadcommandreader.start();
         ConsoleLogManager.a();
-        a.info("Starting minecraft server version Beta 1.3");
+        a.info("Starting minecraft server version Beta 1.4");
         if (Runtime.getRuntime().maxMemory() / 1024L / 1024L < 512L) {
             a.warning("**** NOT ENOUGH RAM!");
             a.warning("To start the server with more ram, launch it as \"java -Xmx1024M -Xms1024M -jar minecraft_server.jar\"");
@@ -87,48 +88,58 @@ public class MinecraftServer implements Runnable, ICommandListener {
         this.k = new EntityTracker(this);
         long j = System.nanoTime();
         String s1 = this.d.a("level-name", "world");
+        String s2 = this.d.a("level-seed", "");
+        long k = (new Random()).nextLong();
+
+        if (s2.length() > 0) {
+            try {
+                k = Long.parseLong(s2);
+            } catch (NumberFormatException numberformatexception) {
+                k = (long) s2.hashCode();
+            }
+        }
 
         a.info("Preparing level \"" + s1 + "\"");
-        this.a((Convertable) (new WorldLoaderServer(new File("."))), s1);
+        this.a(new WorldLoaderServer(new File(".")), s1, k);
         a.info("Done (" + (System.nanoTime() - j) + "ns)! For help, type \"help\" or \"?\"");
         return true;
     }
 
-    private void a(Convertable convertable, String s) {
+    private void a(Convertable convertable, String s, long i) {
         if (convertable.a(s)) {
             a.info("Converting map!");
             convertable.a(s, new ConvertProgressUpdater(this));
         }
 
         a.info("Preparing start region");
-        this.e = new WorldServer(this, new ServerNBTManager(new File("."), s, true), s, this.d.a("hellworld", false) ? -1 : 0);
+        this.e = new WorldServer(this, new ServerNBTManager(new File("."), s, true), s, this.d.a("hellworld", false) ? -1 : 0, i);
         this.e.a(new WorldManager(this));
         this.e.j = this.d.a("spawn-monsters", true) ? 1 : 0;
         this.e.a(this.d.a("spawn-monsters", true), this.m);
         this.f.a(this.e);
         short short1 = 196;
-        long i = System.currentTimeMillis();
-        ChunkCoordinates chunkcoordinates = this.e.l();
+        long j = System.currentTimeMillis();
+        ChunkCoordinates chunkcoordinates = this.e.m();
 
-        for (int j = -short1; j <= short1 && this.p; j += 16) {
-            for (int k = -short1; k <= short1 && this.p; k += 16) {
-                long l = System.currentTimeMillis();
+        for (int k = -short1; k <= short1 && this.p; k += 16) {
+            for (int l = -short1; l <= short1 && this.p; l += 16) {
+                long i1 = System.currentTimeMillis();
 
-                if (l < i) {
-                    i = l;
+                if (i1 < j) {
+                    j = i1;
                 }
 
-                if (l > i + 1000L) {
-                    int i1 = (short1 * 2 + 1) * (short1 * 2 + 1);
-                    int j1 = (j + short1) * (short1 * 2 + 1) + k + 1;
+                if (i1 > j + 1000L) {
+                    int j1 = (short1 * 2 + 1) * (short1 * 2 + 1);
+                    int k1 = (k + short1) * (short1 * 2 + 1) + l + 1;
 
-                    this.a("Preparing spawn area", j1 * 100 / i1);
-                    i = l;
+                    this.a("Preparing spawn area", k1 * 100 / j1);
+                    j = i1;
                 }
 
-                this.e.u.d(chunkcoordinates.a + j >> 4, chunkcoordinates.c + k >> 4);
+                this.e.u.c(chunkcoordinates.a + k >> 4, chunkcoordinates.c + l >> 4);
 
-                while (this.e.e() && this.p) {
+                while (this.e.f() && this.p) {
                     ;
                 }
             }
@@ -151,7 +162,7 @@ public class MinecraftServer implements Runnable, ICommandListener {
     private void f() {
         a.info("Saving chunks");
         this.e.a(true, (IProgressUpdate) null);
-        this.e.r();
+        this.e.t();
     }
 
     private void g() {
@@ -190,7 +201,7 @@ public class MinecraftServer implements Runnable, ICommandListener {
 
                     j += l;
                     i = k;
-                    if (this.e.q()) {
+                    if (this.e.s()) {
                         this.h();
                         j = 0L;
                     } else {
@@ -261,16 +272,16 @@ public class MinecraftServer implements Runnable, ICommandListener {
         Vec3D.a();
         ++this.h;
         if (this.h % 20 == 0) {
-            this.f.a((Packet) (new Packet4UpdateTime(this.e.k())));
+            this.f.a((Packet) (new Packet4UpdateTime(this.e.l())));
         }
 
-        this.e.g();
+        this.e.h();
 
-        while (this.e.e()) {
+        while (this.e.f()) {
             ;
         }
 
-        this.e.d();
+        this.e.e();
         this.c.a();
         this.f.b();
         this.k.a();
@@ -322,6 +333,10 @@ public class MinecraftServer implements Runnable, ICommandListener {
 
     public void b(String s) {
         a.info(s);
+    }
+
+    public void c(String s) {
+        a.warning(s);
     }
 
     public String c() {

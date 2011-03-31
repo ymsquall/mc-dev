@@ -15,13 +15,13 @@ public class WorldChunkManager {
     protected WorldChunkManager() {}
 
     public WorldChunkManager(World world) {
-        this.e = new NoiseGeneratorOctaves2(new Random(world.j() * 9871L), 4);
-        this.f = new NoiseGeneratorOctaves2(new Random(world.j() * 39811L), 4);
-        this.g = new NoiseGeneratorOctaves2(new Random(world.j() * 543321L), 2);
+        this.e = new NoiseGeneratorOctaves2(new Random(world.k() * 9871L), 4);
+        this.f = new NoiseGeneratorOctaves2(new Random(world.k() * 39811L), 4);
+        this.g = new NoiseGeneratorOctaves2(new Random(world.k() * 543321L), 2);
     }
 
     public BiomeBase a(ChunkCoordIntPair chunkcoordintpair) {
-        return this.a(chunkcoordintpair.a >> 4, chunkcoordintpair.b >> 4);
+        return this.a(chunkcoordintpair.a << 4, chunkcoordintpair.b << 4);
     }
 
     public BiomeBase a(int i, int j) {
